@@ -1,0 +1,31 @@
+<style>
+body{
+font-family: "微软雅黑";
+} 
+.clearfloat{overflow: hidden;width: 100%;}
+.DLT{width:350px;}
+#DLT_BARS{
+  width:100%; margin:0;padding:0;
+}
+.DLT_TITLE{height:26px;line-height:26px;padding:0 5px}
+
+.login_main{
+background-color:#F5F5F5;
+-moz-border-radius:5px;
+-khtml-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius: 5px;
+padding:20px;
+}
+#DLT_BARS li{
+  float: left;
+  padding: 0 5px;
+  list-style:none;
+}
+#DLT_BARS li a{
+  display: block;
+  width: 120px;
+  height: 30px;
+}
+
+</style>
