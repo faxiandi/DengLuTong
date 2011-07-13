@@ -1,1 +1,26 @@
-Hello Git!
+登录通是一个社会化网络登录集成工具。
+
+系统需求
+php>=5.3
+
+安装
+DengLuTong\DLTConfig.php中修改数据库信息、app key(对应KEYID)、app secret(对应SECID)，根据实际情况修改url地址。 在数据库中添加用户绑定表，结构在DengLuTong.sql中。
+
+演示
+index.php,login.php,logout.php,reg.php为示例程序文件。
+
+API申请地址
+天涯 http://open.tianya.cn/
+腾讯 http://connect.opensns.qq.com/
+淘宝 http://open.taobao.com/
+Google OAUTH https://www.google.com/accounts/ManageDomains
+开心网 http://www.kaixin001.com/platform/rlink/rlink_create.php
+搜狐 http://open.t.sohu.com/
+网易 http://open.t.163.com/
+豆瓣 http://www.douban.com/service/apikey/apply
+MSN https://manage.dev.live.com/
+人人网 http://dev.renren.com/
+新浪 http://open.weibo.com/
+盛大 http://connect.open.sdo.com/
+YAHOO https://developer.apps.yahoo.com/projects
+支付宝 https://b.alipay.com/order/hot.htm
