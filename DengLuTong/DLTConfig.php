@@ -75,7 +75,6 @@ $baseurl='http://'.$_SERVER['SERVER_NAME'].str_replace(basename($_SERVER['PHP_SE
 $config->BaseUrl = $baseurl;
 $config->LoginUrl=$baseurl.'?dltact=login&vendor=';                //登录条链接地址
 $config->CallBack = $baseurl.'?dltact=callback&vendor=';         //回调地址
-$config->SaveUrl = $baseurl.'?dltact=save';                                    //保存用户绑定信息页面地址
 $config->Local='Local';                  //默认本地用户处理类
 $config->themefile='showBars';  //showMiniBars  样式文件
 $config->theme='theme';            //minitheme         样式

@@ -172,22 +172,37 @@ class DengLuTong
   function callback($vendor,$args=array())
   {
     $keys=DengLuTong::getKeys();
+    $args=array();
     //各服务商返回的参数各不相同，故统一处理。
-    $args=array ( 
-          'oauth_token' => isset( $_GET['oauth_token'] ) ? $_GET['oauth_token'] : '' , 
-          'oauth_token_secret' => !empty($keys['oauth_token_secret'])?$keys['oauth_token_secret']:'', 
-          'oauth_verifier' => isset( $_GET['oauth_verifier'] ) ? $_GET['oauth_verifier'] : '',
-          'openid' => isset( $_GET['openid'] ) ? $_GET['openid'] : '' ,
-      		'oauth_vericode' => isset( $_GET['oauth_vericode'] ) ? $_GET['oauth_vericode'] : '' ,
-      		'code' => isset( $_GET['code'] ) ? $_GET['code'] : '' ,
-      );
-    $user=$this->vendor->login($args);
-    if($user)
+    !empty($keys['oauth_token_secret'])?$args['oauth_token_secret']=$keys['oauth_token_secret'] : '' ;
+    isset( $_GET['oauth_token'] )?$args['oauth_token']=$_GET['oauth_token'] : '' ;
+    isset( $_GET['oauth_verifier'] )?$args['oauth_verifier']=$_GET['oauth_verifier'] : '' ;
+    isset( $_GET['openid'] )?$args['openid']=$_GET['openid'] : '' ;
+    isset( $_GET['oauth_vericode'] )?$args['oauth_vericode']=$_GET['oauth_vericode'] : '' ;
+    isset( $_GET['code'] )?$args['code']=$_GET['code'] : '' ;
+
+//    $args=array ( 
+//          'oauth_token' => isset( $_GET['oauth_token'] ) ? $_GET['oauth_token'] : '' , 
+//          'oauth_token_secret' => !empty($keys['oauth_token_secret'])?$keys['oauth_token_secret']:'', 
+//          'oauth_verifier' => isset( $_GET['oauth_verifier'] ) ? $_GET['oauth_verifier'] : '',
+//          'openid' => isset( $_GET['openid'] ) ? $_GET['openid'] : '' ,
+//      		'oauth_vericode' => isset( $_GET['oauth_vericode'] ) ? $_GET['oauth_vericode'] : '' ,
+//      		'code' => isset( $_GET['code'] ) ? $_GET['code'] : '' ,
+//      );
+    
+    if($args)
     {
-      $user['vendor']=$vendor;
-      $this->setUser($user);
+      $user=$this->vendor->login($args);
+      if($user)
+      {
+        $user['vendor']=$vendor;
+        $this->setUser($user);
+      }
+      return $user; 
+    }else{
+      return FALSE;
     }
-    return $user;    
+       
   }
   
   /**
@@ -272,16 +287,7 @@ class DengLuTong
     }
     
   }
-  
-  /**
-   * 保存用户
-   */
-  static function save()
-  {
-      $this->local->save();
-  }
-  
-  
+ 
   
   /**
    * 登出
@@ -300,8 +306,10 @@ class DengLuTong
     self::_showBars();    
   }
 
-
-
+  /**
+   * 获得所有已绑定的第三方帐号信息
+   * @param unknown_type $uid
+   */
   function getBinded($uid)
   {
     $binded=$this->local->getBinded($uid);
@@ -327,11 +335,20 @@ class DengLuTong
     return $result;
   }
   
+  /**
+   * 解除绑定
+   * @param string $vendor	
+   * @param string $uid	本地用户ID
+   */
   function unbind($vendor='',$uid='')
   {
     return $this->local->unbind($uid,$vendor);
   }
   
+  /**
+   * 本地用户登录流程
+   * @param string $uid	本地用户ID
+   */
   function localLogin($uid)
   {
     return $this->local->localLogin($uid);

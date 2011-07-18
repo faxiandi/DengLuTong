@@ -13,27 +13,16 @@ class Local
     $this->dbconfig=Config::getInstance()->DB;
     $this->initDB();
   }
-  function checkRegistered($uid,$vendor)
-  {
-    $sql="select user_id from ".$this->dbconfig['tablename']." where dlt_user_id='{$uid}' and from='{$vendor}'";
-    echo $sql;
-  } 
+
   function initDB()
   {
     $this->db=Db::getInstance();
     //$this->db->connect();
   }  
   
-  /**
-   * 本地注册流程
-   */
-  function localRegister()
-  {
-    return rand(1,10);
-  }
-  
   function localLogout(){}
   
+
   /**
    * 本地登录处理
    * @param mix $uid 本地用户ID
@@ -100,6 +89,10 @@ class Local
     }
   }
   
+  /**
+   * 保存第三方信息
+   * @param string $uid	本地用户ID
+   */
   function processBind($uid)
   {
     if(!$uid)return FALSE;
@@ -122,42 +115,54 @@ class Local
     }
   }
   
-  
+  /**
+   * 更新绑定信息
+   */
   function updateBind()
   {
     
   }
   
-  function save()
-  {
-    //本地注册流程，返回用户ID
-    $uid=$this->localRegister();
-    $this->processBind($uid);
-  }
-  
+
+  /**
+   * 前往登录页面
+   */
   function gotoLogin()
   {
     header('Location: login.php');
   }
   
   
-  
+  /**
+   * 前往注册页面
+   */
   function gotoRegister()
   {
     //header('Location: ');
     die;
   }
   
+  /**
+   * 显示成功
+   */
   function success()
   {
     header('Location: ./');die;
   }
   
+  /**
+   * 显示失败
+   */
   function error()
   {
     echo 'error';
   }
   
+  /**
+   * 获得用户绑定信息
+   * @param string $uid	本地用户ID
+   * @param string $vendor	
+   */
   function getBinded($uid,$vendor='')
   {
     $sql="select * from ".$this->dbconfig['tablename']." where user_id='{$uid}'".($vendor?" and vendor='{$vendor}'":'');
@@ -165,6 +170,11 @@ class Local
     return $result;
   }
   
+  /**
+   * 解除绑定
+   * @param string $uid	本地用户ID
+   * @param string $vendor
+   */
   function unbind($uid='',$vendor='')
   {
     empty($uid)?$uid=$_SESSION['user']['id']:'';
