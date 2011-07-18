@@ -6,7 +6,7 @@ class Vendor_Msn extends lib\Vendor
   static $site='Msn';
   static $name='Msn';
   static $logo='';
-  static $theme='';
+  //static $theme='';
   protected $oauth,$client;
   function __construct()
   {
@@ -21,11 +21,11 @@ class Vendor_Msn extends lib\Vendor
    * 获取登录条
    * @param string $url	链接地址
    */
-  static function getBar($theme='',$url='',$vendor='',$name='')
-  {
-    return parent::getBar($url,self::$site,self::$name,$theme);
-  }
-  
+//  static function getBar($theme='',$url='',$vendor='',$name='')
+//  {
+//    return parent::getBar($url,self::$site,self::$name,$theme);
+//  }
+//  
   function gotoLoginPage()
   {
     $url = "https://oauth.live.com/authorize?scope=wl.basic wl.emails wl.signin&response_type=code&client_id=".$this->appid."&redirect_uri=".$this->callback."&state=1";

@@ -34,5 +34,5 @@ class  Db
   function connect(){}
   function select($sql){}
   function insert($table,$data){}
-  function execute(){}
+  function execute($sql){}
 }

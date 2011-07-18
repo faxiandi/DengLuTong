@@ -52,13 +52,14 @@ class Vendor
    * @param string $vendor	服务商
    * @param string $theme	模板
    */
-  static function getBar($url='',$vendor='',$name='',$theme='theme')
+  static function getBar($theme='theme',$url='',$vendor='',$name='')
   {
     empty($theme)?$theme='theme':'';
-    $str=self::$$theme;
+    $str=static::$$theme;
+    $vendor==''?$vendor=static::$site:'';
+    $name==''?$name=static::$name:'';
     if(empty($url))$url=Config::getInstance()->LoginUrl;
     $logo=self::getLogo($vendor);
-    
     return str_replace(array('{url}','{vendor}','{logo}','{name}'),array($url,$vendor,$logo,$name),$str);
   }
   

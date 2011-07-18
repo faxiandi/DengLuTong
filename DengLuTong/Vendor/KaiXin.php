@@ -7,7 +7,7 @@ class Vendor_KaiXin extends lib\Vendor
   static $site='KaiXin';
   static $name='开心网';
   static $logo='';
-  static $theme='';
+  //static $theme='';
   protected $oauth,$client;
   public $v='1.0';
   function __construct()
@@ -20,10 +20,10 @@ class Vendor_KaiXin extends lib\Vendor
    * 获取登录条
    * @param string $url	链接地址
    */
-  static function getBar($theme='',$url='',$vendor='',$name='')
-  {
-    return parent::getBar($url,self::$site,self::$name,$theme);
-  }
+//  static function getBar($theme='',$url='',$vendor='',$name='')
+//  {
+//    return parent::getBar($url,self::$site,self::$name,$theme);
+//  }
   
   function gotoLoginPage()
   {
