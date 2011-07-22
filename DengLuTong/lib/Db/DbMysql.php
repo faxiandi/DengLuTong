@@ -36,7 +36,6 @@ class DbMysql extends Db
       while($row = mysql_fetch_assoc($this->queryID)){
         $result[]   =   $row;
       }
-      mysql_data_seek($this->queryID,0);
     }
     return $result;    
   }

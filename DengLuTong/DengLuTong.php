@@ -56,11 +56,7 @@ class DengLuTong
     return self::$instance;
   }  
   
-  function setLocal($local='Local')
-  {
-      $classname='DengLuTong\lib\Local\\'.$local;
-      $this->local=new $classname();
-  }
+
   
   
   
@@ -158,6 +154,14 @@ class DengLuTong
       $this->vendor=new $class();
     }
   }
+  
+  function setLocal($local='Local')
+  {
+      $classname='DengLuTong\lib\Local\\'.$local;
+      $this->local=new $classname();
+  }  
+  
+  
   
   function getRequestToken()
   {
